@@ -1,23 +1,28 @@
 // import page from "./page";
-import person from './documents/person'
-import page from './documents/page'
-import post from './documents/post'
-import callToAction from './objects/callToAction'
-import infoSection from './objects/infoSection'
-import settings from './singletons/settings'
-import link from './objects/link'
-import blockContent from './objects/blockContent'
+import {defineType} from 'sanity'
 
 export const schemaTypes = [
-  // Singletons
-  settings,
-  // Documents
-  page,
-  post,
-  person,
-  // Objects
-  blockContent,
-  infoSection,
-  callToAction,
-  link,
+  defineType({
+    name: 'externalLink',
+    type: 'url',
+    title: 'External Link',
+  }),
+
+  defineType({
+    name: 'pageWithExternalLink',
+    type: 'document',
+    title: 'Page With External Link',
+    fields: [
+      {
+        name: 'title',
+        type: 'string',
+        title: 'Title',
+      },
+      {
+        name: 'link',
+        type: 'externalLink',
+        title: 'External Link',
+      },
+    ],
+  }),
 ]
